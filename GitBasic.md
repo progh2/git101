@@ -168,21 +168,23 @@ git status
 ```
 
 ![image](https://user-images.githubusercontent.com/1307187/56178613-ddaec200-603d-11e9-90fe-63afec171556.png)
+
 위 내용에서 얻을 수 있는 정보는 다음과 같습니다. 
-> > On branch master
-> 
-> master branch 상태입니다.(branch에 대해서는 나중에 배웁니다.)
-> 
-> > No commits yet
-> 
-> 커밋 내역이 없습니다. 빈 저장소입니다. 
-> 
-> >Untracked files:
-  > (use "git add <file>..." to include in what will be committed)
-> >
-> >        README.md
-> 
-> 추적(track)되지 않는(Un) 파일이 있는데 이 파일은 README.md라는 파일입니다. (커밋 할 생각이라면 `git add 파일명` 명령을 사용하세요)
+
+> On branch master 
+
+master branch 상태입니다.(branch에 대해서는 나중에 배웁니다.)
+
+> No commits yet
+
+커밋 내역이 없습니다. 빈 저장소입니다. 
+ 
+> Untracked files:
+   (use "git add <file>..." to include in what will be committed)
+>
+>        README.md
+ 
+추적(track)되지 않는(Un) 파일이 있는데 이 파일은 README.md라는 파일입니다. (커밋 할 생각이라면 `git add 파일명` 명령을 사용하세요)
 
 우리가 마트에 가서 물건을 살 때 살 물건 각각마다 결제하지 않고 모아서 한번에 결제하는 것처럼 Git 또한 매번 커밋하지 않습니다. 장바구니에 물건 담듯이 커밋할 대상들을 표시해놓고 의미를 나눠서 커밋해서 저장소에 넣곤 합니다. 여기서 장바구니에 물건을 담는 것 같은 과정을 Staging 또는 Add to Index라고 합니다. 공연 할 아이돌들이 Stage(무대)에 오르거나 특정 목적으료 명렬(Index)에 표시하는 것과 닮아 있습니다. 
 
