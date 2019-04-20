@@ -212,23 +212,151 @@ git status
 > 위와 같이 하면 README.md파일은 언스테이징(unstage)가 되며 스테이징 하기 전상태로 돌아가게 됩니다.  필요에 따라서 add 명령으로 다시 스테이징 할 수 있습니다.
 
 ## 커밋(commit)하기(1)
-자, 이제 스테이징이 되었어니 커밋도 해보기로 합니다. 커밋(Commit)이란 스테이징된 변경사항들을 저장소에 반영하는 것을 의미합니다.
+자, 이제 스테이징이 되었어니 커밋도 해보기로 합니다. 커밋(Commit)이란 스테이징된 변경사항들을 저장소에 반영하는 것을 의미합니다. 커밋을 할 때는 어떠한 작업을 했는지에 대한 정보(Message)를 남겨두어야 다른 사람이 보았을 때 어떤 작업을 했는지 알 수가 있겠죠? 커밋을 할 때는 `git commit -m "메세지"` 명령을 사용합니다. 여기서는 다음과 같은 명령을 실행합니다.
 
+```cmd
+git commit -m "Add README.md"
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56458530-f95df380-63c2-11e9-8218-3573c6b76b52.png)
+
+하지만 커밋을 한 명령이 실패를 합니다. 메시지를 보면 다음과 같습니다.
+
+> > *** Please tell me who you are.
+> 
+> 당신이 누구인지 알려주세요. 
+> 
+> > Run
+> >
+> >   git config --global user.email "you@example.com"
+> >
+> >  git config --global user.name "Your Name"
+> >
+> > to set your account's default identity.
+> 
+> 여러분의 계정 기본 정보를 설정해주세요.
+> 
+> > Omit --global to set the identity only in this repository.
+> 
+> 이 저장소에서만 사용하고 다른 저장소에서는 사용하지 않으려면 --global 옵션을 빼고 실행하세요.
+> 
+> > fatal: unable to auto-detect email address (got 'progh2@LAPTOP-3323MV48.(none)')
+> 
+> 치명적 문제: 이메일 주소를 자동 인식할 수 없었습니다. 
+
+이 문제를 해결하기 위해서는, 메시지에 나온 내용대로 사용자 정보를 등록해야 합니다. 
 
 ## 사용자 정보 등록하기
+
+사용자 정보를 등록하려면 다음과 같은 명령어를 사용합니다. 
 
 ```cmd
 git config --global user.name "영문이름"
 git config --global user.email "이메일주소"
 ```
 
-## 커밋(commit)하기(2)
+다음과 같이 이름과 이메일을 넣어서 실행합니다.(아래 정보는 선생님의 정보이므로 자신의 이름과 이메일 주소로 바꿔서 실행합시다.) 가급적 외국 사람들을 위하여 이름을 영어로 `이름 성` 스타일로 입력하고, 이메일은 `깃허브에 등록한 이메일` 주소로 설정합니다. 
 
+```cmd
+git config --global user.name "Gihun Ham"
+git config --global user.email "progh2@gmail.com"
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56458637-37a7e280-63c4-11e9-8616-606c12aa226d.png)
+
+입력을 하면 위처럼 특별한 메시지가 나타나지는 않습니다만 자신의 `홈 디렉토리 계정` 아래에 `.gitconfig` 파일이 생기며 다음과 같이 정보가 들어가 있음을 알 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56458659-8d7c8a80-63c4-11e9-82dc-0767709499b5.png)
+
+자신의 홈 디렉토리(`c:\Users\사용자아이디`) 안에 `.gitconfig` 파일이 생겼습니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56458681-d5031680-63c4-11e9-80bc-f2ecaa237a13.png)
+
+`.gitconfig` 파일을 열어보면 안에 세팅한 사용자 이름과 이메일 주소가 있습니다. 수정할 필요가 있다면 여기서 수정해서 저장하면 됩니다.
+
+## 커밋(commit)하기(2)
+자, 이제 사용자 정보도 추가했으니 다시 커밋을 합니다. 잘 들어가는 것을 확인할 수 있습니다.
+
+```cmd
+git commit -m "Add README.md"
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56459261-059a7e80-63cc-11e9-90d1-34b902975b33.png)
+
+방금 한 것과 같이 Git을 사용해서 버전 관리를 하게 됩니다.
+> 1. 깃 저장소가 없으면 생성한다. (git init)
+> 1. 파일을 생성하거나 수정한다.
+> 1. 파일을 스테이징 한다. (git add 파일명)
+> 1. 파일을 메시지와 함께 커밋한다. (git commit -m "메시지")
+> 1. 2.로 돌아간다.
 
 ## Github 가입(join/sign up), 로그인(sign in) 하기 
+자, 이번에는 원격 저장소(remote repository)를 만들어서 써보기 위하여 깃허브 서비스에 가입하여 로그인 해봅니다. 
+
+깃허브는 Git에서 만든 것이 아니며 별개의 회사로 개발 프로젝트를 만들고 관리하는 서비스로 Git을 활용한 저장소 기능을 제공하며 여러 사람들이 협업해서 만들어갈 수 있도록 해주는 웹서비스입니다. 현재 윈도우를 만든 것으로 유명한 Microsoft 회사에서 인수하여 운영하고 있습니다.
+
+* https://github.com  
+
+![image](https://user-images.githubusercontent.com/1307187/56459336-fe27a500-63cc-11e9-867d-4f507cbd2bf2.png)
+
+
+위 사이트에 가서 가입(Join/Sign Up)을 하도록 합니다. 이 때 사용하는 이메일을 앞서 Git 사용자 등록을 할 때 사용했던 이메일과 같게 해줍니다. 
+
+또한 가입 후 이메일로 들어가보면 확인(Confirm) 메일이 와있을 것입니다. 허위 이메일로 가입하는 것을 막기위해 확인하는 이메일로, 메일을 확인하면 안에 확인하는 버튼 내지 링크가 있을 것입니다. 이것을 클릭해서 이메일 인증을 해주도록 합니다.
+
+다 했으면 깃허브 사이트에 로그인합니다.
 
 ## Github 원격 저장소(Remote Repository) 생성하기
 
+로그인 했으면 우측 상단에 `+`를 눌러서 `New Repository`를 클릭합니다. `새 저장소`를 만든다는 뜻입니다. 
+
+![image](https://user-images.githubusercontent.com/1307187/56459355-30d19d80-63cd-11e9-91fd-55ae3bb453a7.png)
+
+그러면 새 저장소를 만드는 화면이 나옵니다. `Repository name`은 프로젝트 이름으로, 프로젝트의 url의 일부로 사용되기 때문에 간결하고 명확하고 짧은 영어를 사용해서 지어주도록 합니다. 여기서는 learngit 이라고 지어주도록 합니다. 또한 Description은 설명이란 뜻으로 프로젝트에 대한 설명을 적어줍니다.
+
+그 밑에는 프로젝트를 `Public`(공개) 프로젝트로 하여 다른 사람들도 볼 수 있게 할지, `Private`(개인/비밀) 프로젝트로 하여 자신만 보게할지를 선택할 수 있습니다. 기본 값인 `Public`으로 냅두도록 합니다. 
+
+나머지는 프로젝트에 리드미 문서나 무시할 파일 목록, 저작권 등을 자동으로 만들어주는 옵션인데 여기서는 사용하지 않겠습니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56459376-86a64580-63cd-11e9-8917-79e71c9b8598.png)
+
+다 적었으면 `Create repository`를 클릭해서 프로젝트를 생성합니다.
+
 ## 지역 저장소에 원격저장소 별명 등록, 지역 저장소의 커밋 내역을 원격 저장소로 커밋 보내기(Push)
 
+지금 깃허브에서 생성한 저장소를 원격 저장소(`remote repository`), 앞~~에서 생성해서 커밋한 내 컴퓨터에 있는 저장소를 지역 저장소(`local repository`)라고 합니다.
+
+Repository는 서로 대등한 관계로, local repository에 있는 커밋 내역들을 remote repository로 보내어 두 저장소가 같은 내용을 가지게 하도록 하겠습니다.(두 저장소를 동기화한다 같은 표현을 쓰기도 합니다.)
+
+그러기 위해서는 우선 원격 저장소에 별칭을 두어 등록해야 합니다. 이를 위한 방법이 저장소를 만들자마자 들어가면 나오는 화면에 써있습니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56459414-3da2c100-63ce-11e9-9c0e-dfe23e512aee.png)
+
+크게 3가지 경우에 대해서 예시를 보여주고 있는데 우리의 경우 기존에 존재하는 저장소(existing repository)를 등록하는 케이스로 2번째 명령을 복사해서 사용하면 됩니다. 아래는 선생님의 경우로, 여러분은 여러분의 remote repository에 있는 내용을 복사해서 실행해야 합니다. 
+
+```cmd
+git remote add origin https://github.com/progh2/learngit.git
+git push -u origin master
+```
+
+> > git remote add origin https://github.com/progh2/learngit.git
+> 
+> * origin 이라는 이름으로 https://github.com/progh2/learngit.git 라는 원격 저장소를 등록합니다.
+> 
+> > git push -u origin master
+> * 앞에서 이름붙인 origin 이라는 원격 저장소로 master 브랜치의 커밋 내역을 보냅니다. -u 옵션을 붙이면 기본 저장소로 origin 저장소와 master 브랜치를 생략하고 git push만 실행해도 origin master를 붙여서 실행해줍니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56459494-74c5a200-63cf-11e9-8b35-550e7b7b96de.png)
+
+위 그림을 보면  master라는 새 브랜치(new branch)가 생성되었고 원격 저장소로 반영이 되었다는 내용을 알 수 있습니다.
+
+깃허브의 화면을 갱신하거나 Code를 눌러서 다시 화면을 불러와 보면 우리가 보낸 커밋 내역이 반영되었다는 것을 알 수 있습니다. 특히 파일명을 `README.md`로 지을 경우 해당 파일의 내용을 마크다운으로 해석해서 파일목록 밑에 내용을 렌더링해서 보여줍니다. 
+
+![image](https://user-images.githubusercontent.com/1307187/56459516-aa6a8b00-63cf-11e9-93ce-c944b385ad62.png)
+
+좌측 위에 `commit`를 클릭하면 커밋한 내역들이 나타납니다.  
+
+![image](https://user-images.githubusercontent.com/1307187/56459538-fae1e880-63cf-11e9-92b3-989d001616ab.png)
+
+위와같이 하여 지역 저장소에서 커밋한 내역을 원격 저장소로 `Push`(푸쉬) 할 수 있습니다.
 
