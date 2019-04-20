@@ -1,9 +1,58 @@
 # Git으로 협업하기
- 
+Git으로 협업하는 경우 일어날 수 있는 상황에 대해서 처리하는 방법에 대해서 알아보도록 합니다.
+
 ## 1. 서로 다른 파일 추가, 수정하기
+프로젝트에서 지역 저장소(Local Repository)와 원격 저장소(Remote Repository)에 각각 새로운 파일이 만들어지는 경우에 대해서 알아보겠습니다. 예를 들면 2명의 개발자가 각기 다른 파일을 만들어서 커밋, 푸쉬한 경우 이런 상황이 일어날 수 있습니다. 
+
 ### Local Repository에 파일 추가히기
 
+다음과 같은 내용으로 INSTALL.md 라는 파일을 만들어 스테이징, 커밋, 푸쉬합니다.
+
+```md
+# INSTALL
+## Requirement
+* Windows 7
+* JDK 1.6
+
+## Install 
+1. Download file
+1. Unzip file
+```
+
+```cmd
+notepad INSTALL.md
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461019-ebba6500-63e6-11e9-95f9-feabcb82c996.png)
+
+```cmd
+git add INSTALL.md
+git commit -m "Add INSTALL.md"
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461076-aa768500-63e7-11e9-9734-149ff7f444a4.png)
+
 ### Remote Repository에 파일 추가하기 
+깃허브 프로젝트에서 `Code` 탭을 클릭 후 `Create new file`을 클릭합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56461104-32f52580-63e8-11e9-966e-aac34deb587c.png)
+
+파일 이름은 `Greeting.md`로, 내용은 다음과 같이 작성합니다.
+
+```md
+# Hello, World?!
+# 안녕, 세계야?!
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461124-78b1ee00-63e8-11e9-9dce-f4842fce135d.png)
+
+화면 하단으로 스크롤하면 커밋 메시지를 작성하는 박스가 있습니다. 즉, 깃허브에서 간편하게 파일 생성 또는 편집을 할 수 있고 `Create new file`을 클릭하면 커밋, 푸쉬를 하는 것과 동일한 결과를 얻을 수 있습니다. `Create new file` 버튼을 클릭합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56461134-ae56d700-63e8-11e9-829b-d761394f5599.png)
+
+Greeting.md 파일이 커밋, 푸시된 것과 같은 결과가 나타난 것을 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56461154-fd047100-63e8-11e9-8b6f-ed7b0184324d.png)
 
 ### Local Repository에서 파일 푸시하기(1)
 
