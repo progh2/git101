@@ -293,23 +293,197 @@ git push origin master
 ![image](https://user-images.githubusercontent.com/1307187/56462027-05fc3f00-63f7-11e9-917d-fc4c8bd66963.png)
 
 ## 3. 서로 같은 파일 같은 영역 수정하기
+이번에는 지역 저장소, 원격 저장소에서 같은 파일의 같은 영역을 같이 수정한 경우 어떤 일이 발생하며 어떻게 해결해야 하는지 알아보도록 하겠습니다.
+
 ### Remote Repository에 파일 수정하기 
+
+깃허브에서 `Code` 탭으로 간 후 `README.md` 파일을 클릭합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56462778-f505fa80-6403-11e9-939a-4ea9d11536dd.png)
+
+우측 상단의 편집 아이콘을 클릭합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56462784-11099c00-6404-11e9-8455-bfbfd5f9e773.png)
+
+`Git practice example project`를 `Simple Project using Git`로 수정합니다.
+
+*수정전*
+
+```md
+# Nice Project
+## About
+Git practice example project
+## Dev. Language
+C#, .Net Framework4
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462814-75c4f680-6404-11e9-881e-cad264737f0d.png)
+
+*수정후*
+
+```md
+# Nice Project
+## About
+Simple Project using Git
+## Dev. Language
+C#, .Net Framework4
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462819-8a08f380-6404-11e9-9707-aabef38222fe.png)
+
+하단의 커밋 메시지에 `프로젝트 설명 수정`이라 적고 `Commit changes` 버튼을 클릭합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56462829-b6247480-6404-11e9-9d9d-d8a7909a6ce8.png)
+
+README.md 파일이 수정된 것을 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56462837-d9e7ba80-6404-11e9-89ad-582648a81e06.png)
 
 ### Local Repository에 파일 수정히기
 
+이제 지역 저장소에 있는 README.md 파일을 수정합니다.
+
+```md
+notepad README.md
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462860-2e8b3580-6405-11e9-9923-7e5d8fb016d2.png)
+
+`Git practice example project`를 `Git Simple Project`로 수정합니다.
+
+*수정전*
+
+```md
+# Nice Project
+## About
+Git practice example project
+## Dev. Language
+C#, .Net Framework4
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462850-026fb480-6405-11e9-872e-853f2938563f.png)
+
+*수정후*
+
+```md
+# Nice Project
+## About
+Git Simple Project
+## Dev. Language
+C#, .Net Framework4
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462864-4b276d80-6405-11e9-953a-fb94cf9b7088.png)
+
+수정했으면 저장 후 스테이징, 커밋을 합니다. 
+
+```cmd
+git add README.md
+git commit -m "프로젝트 소개 수정"
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462879-888bfb00-6405-11e9-8477-e89d1ce43982.png)
+
+
 ### Local Repository에서 파일 푸시하기(1)
+
+이제 원격 저장소로 푸시를 해봅니다.
+
+```cmd
+git push origin master
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462923-2e3f6a00-6406-11e9-9225-0ffd650fb1ab.png)
+
+하지만 에러 메시지와 함께 거절되었다는 내용이 나타납니다.
 
 ### git pull로 Remote Repository의 Commit 내역을 Local Repository로 가져오기
 
+이제 원격 저장소의 변경사항을 가져오기 위해 `git pull` 명령을 실행합니다.
+
+```cmd
+git pull origin master
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462932-444d2a80-6406-11e9-9a84-037ae2b3c446.png)
+
+앞에서의 사례1, 2와는 다르게 이번에는 자동 머지가 실패했다(`Automatic merge failed`)라고 표시가됩니다. 즉 Git이 판단하기에는 똑같은 부분이 수정되어서 어느쪽으로 어떻게 수정할 지 알 수가 없어서 `직접 고치고 커밋`하라(fix conflicts and then commit the result)는 메시지를 보여주고 있습니다. 
+
 ### 충돌 내용 해결하기
+다행히 Git은 친절하기 때문에 어느 부분이 `충돌(CONFLICT)`이 발생했는지 표시해줘서 쉽고 빠르게 충돌난 부분을 알아보고 수정할 수가 있습니다. 이미 README.md 파일에 해당 부분이 표시되어 있으므로 파일을 열어봅니다.
+
+```cmd
+notepad README.md
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462973-c76e8080-6406-11e9-8e43-adc241d5a34d.png)
+
+
+*충돌 해결 전*
+
+```md
+# Nice Project
+## About
+<<<<<<< HEAD
+Git Simple Project
+=======
+Simple Project using Git
+>>>>>>> 11f3b9c1cd478d8946d8a6e7394e272150645d31
+## Dev. Language
+C#, .Net Framework4
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56462979-eff67a80-6406-11e9-83bd-0718013c9a9d.png)
+
+위에서 보면 `=======` 를 경계로 `<<<<<<<HEAD` 와 `>>>>>>>` 영역에 충돌이 발생한 부분이 표시되고 있습니다. 그래서 이를 하나로 합쳐주고 부가적으로 표시된 부분을 삭제하면 됩니다. 두 내용을 적절히 수정해서 다음과 같이 변경해줍니다. 
+
+> *[노트]* 일반적으로 이렇게 코드가 충돌이 생기고 작성한 사람이 다른 경우, 충돌난 코드를 작성한 사람과 대화를 하여 어떻게 수정할지 논의하고 수정해야 합니다. 논의 없이 마음대로 코드를 수정하면 감정적인 문제로 발전할 수 있으므로 일방적으로 코드를 수정하지 않도록 합니다.
+
+*충돌 해결 후*
+
+```md
+# Nice Project
+## About
+Nice Simple Project using Git
+## Dev. Language
+C#, .Net Framework4
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56463018-79a64800-6407-11e9-9cf3-32dc124bf733.png)
+
+이제 저장 후 스테이징, 커밋을 해줍니다.
+
+```cmd
+git add README.md
+git commit -m "머지 - 충돌 해결"
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56463041-e883a100-6407-11e9-9266-f396c495e741.png)
 
 ### git push로 Local Repository Commit 내역을 Remote Repository로 보내기
 
+이제 다시 푸시를 해봅니다.
+
+```cmd
+git push origin master
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56463046-0e10aa80-6408-11e9-8291-7f981ec4f5ea.png)
+
+푸시가 성공적으로 동작함을 알 수 있습니다.
+
 ### Github에서 Commit 내역 살펴보기
 
+이제 깃허브 프로젝트의 `Code`탭으로 가서 `Commits`를 클릭해서 봅니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56463069-457f5700-6408-11e9-8c56-8d4d8839038c.png)
+
+직접 충돌을 해결한 머지 커밋이 잘 반영되었음을 알 수 있습니다.
+
 ### Github의 Insights, Network 살펴보기
+깃허브 프로젝트의 `Insights`탭 클릭, `Network` 메뉴로 들어가면 다음과 같이 합쳐진 것을 확인할 수 있습니다.
 
-
+![image](https://user-images.githubusercontent.com/1307187/56463079-7d869a00-6408-11e9-9468-4b830c60d211.png)
 
 ## 4. Branch 생성해서 각자 개발, Pull Request 보내서 합치기
 ### 4.1 하나의 브랜치를 사용해서 공동 개발할 경우 한계
