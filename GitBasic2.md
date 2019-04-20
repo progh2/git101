@@ -158,19 +158,139 @@ git push origin master
 이번에는 지역 저장소, 원격 저장소에서 같은 파일의 다른 영역을 같이 수정한 경우 어떤 일이 발생하며 어떻게 해결해야 하는지 알아보도록 하겠습니다.
 
 ### Remote Repository에 파일 수정하기 
+깃허브 프로젝트에서 `Code` 탭을 클릭한 후 INSTALL.md 파일을 클릭합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56461709-2d044200-63f2-11e9-88a3-2b7af09b5c39.png)
+
+우측 상단에 연필 모양의 편집 아이콘을 클릭합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56461712-43aa9900-63f2-11e9-8ce3-705106cd21be.png)
+
+내용을 다음과 같이 수정합니다. (숫자만 7을 10으로, 1.6을 1.11로 변경합니다.)
+
+*수정전*
+
+```md
+## Requirement
+* Windows 7
+* JDK 1.6
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461740-ac921100-63f2-11e9-9e02-e6090bf64514.png)
+
+*수정후*
+```md
+## Requirement
+* Windows 10
+* JDK 1.11
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461745-be73b400-63f2-11e9-9ca6-7525e29aa028.png)
+
+커밋 메시지를 `설치 버전 업데이트`로 적고, 하단의 `Commit changes` 버튼을 클릭합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56461755-d51a0b00-63f2-11e9-8c4c-57f9e60ccfec.png)
+
+윈도우와 JDK 버전이 변경된 것을 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56461767-0397e600-63f3-11e9-9836-6c4e691a734c.png)
+
 
 ### Local Repository에 파일 수정히기
 
+이번에는 지역 저장소의 INSTALL.md 파일을 수정합니다. 노트패드 같은 프로그램으로 INSTALL.md 파일을 엽니다.
+
+```cmd
+notepad INSTALL.md
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461780-3d68ec80-63f3-11e9-8fcc-7df49a41c307.png)
+
+내용을 다음과 같이 수정합니다. (`1. Execute Setup.exe` 한 줄을 추가합니다. )
+
+*수정전*
+
+```md
+## Install 
+1. Download file
+1. Unzip file
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461788-4d80cc00-63f3-11e9-9939-b858e02f88fe.png)
+
+
+*수정후*
+```md
+## Install 
+1. Go to download page
+1. Download file
+1. Unzip file
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461901-262afe80-63f5-11e9-997b-d08dda589f13.png)
+
+저장 후 스테이징, 커밋을 합니다.
+
+```cmd
+git add INSTALL.md
+git commit -m "설치 과정 추가"
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461926-71dda800-63f5-11e9-845a-84363c3e5a99.png)
+
 ### Local Repository에서 파일 푸시하기(1)
+
+지역 저장소의 커밋 내역을 원격 저장소로 푸시합니다.
+
+```cmd
+git push origin master
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461966-106a0900-63f6-11e9-9477-dde5cc68be4f.png)
+
+이전과 비슷해보이지만 살짝 내용이 다릅니다. 
 
 ### git pull로 Remote Repository의 Commit 내역을 Local Repository로 가져오기
 
+앞서 해결했던 방법대로 `git pull origin master`를 해봅니다.
+
+```cmd
+git pull origin master
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461970-414a3e00-63f6-11e9-9c5d-163b8e9d01d5.png)
+
+Git pull을 실행하니 `Auto-merging`이 성공하여 Git이 자동으로 파일을 합쳐주었습니다. 
+
+INSTALL.md 파일 내용을 확인해보면 원격, 지역 저장소에서 수정한 내용이 각각 반영되어 있음을 알 수 있습니다.
+
+```cmd
+type INSTALL.md
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461980-6fc81900-63f6-11e9-83d2-68e45fc89871.png)
+
+
 ### git push로 Local Repository Commit 내역을 Remote Repository로 보내기
+
+이제 원격 저장소로 푸쉬를 합니다. 잘 동작 합니다.
+
+```cmd
+git push origin master
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56461994-abfb7980-63f6-11e9-9c6c-cf03d7371ffe.png)
 
 ### Github에서 Commit 내역 살펴보기
 
-### Github의 Insights, Network 살펴보기
+깃허브에서 `Code`, `Commits`를 클릭하면 다음과 같이 우리가 제작한 2개의 커밋 이후에 자동으로 합쳐준 `Merge Commit`이 생겨있는 것을 확인할 수 있습니다.
 
+![image](https://user-images.githubusercontent.com/1307187/56462006-ce8d9280-63f6-11e9-9ea7-9e5978ac506d.png)
+
+### Github의 Insights, Network 살펴보기
+`Insights` 탭의 `Network` 메뉴로 가보면 다음과 같이 합쳐진 것을 확인할 수 있습니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56462027-05fc3f00-63f7-11e9-917d-fc4c8bd66963.png)
 
 ## 3. 서로 같은 파일 같은 영역 수정하기
 ### Remote Repository에 파일 수정하기 
