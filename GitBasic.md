@@ -218,8 +218,8 @@ git status
 ## 사용자 정보 등록하기
 
 ```cmd
-git config global user.name "영문이름"
-git config global user.email "이메일주소"
+git config --global user.name "영문이름"
+git config --global user.email "이메일주소"
 ```
 
 ## 커밋(commit)하기(2)
