@@ -648,3 +648,76 @@ Pull Request을 작성해서 보냈습니다. 이제 master branch 담당자가 
 ![image](https://user-images.githubusercontent.com/1307187/56463468-be35e180-640f-11e9-8eb1-4b1dc834c344.png)
 
 이후에도 계속 commit을 하고 pull request를 요청할 수 있습니다. 이렇게 하면 특정 기능 별로 개발해 나갈 수 있으서 Git을 유용하고 적절하게 사용할 수 있습니다.
+
+## 5. 저장소 복제하기 
+### 5.1 master repository 복제하기
+다른 컴퓨터 등에서 작업하거나 다른 사람의 유용한 프로젝트를 받아오기 위해서는 `git clone 저장소주소` 명령을 사용하면 됩니다. 
+
+저장소 주소는 github에서 `Clone or download` 버튼을 클릭하면 표시가 되어 복사할 수 있습니다. 이 주소를 복사합니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56463493-7c596b00-6410-11e9-960e-7ce6c3902f11.png)
+
+
+복사한 주소의 저장소를 가져오려면 다음과 같이 합니다. 
+
+```cmd
+git clone 저장소명
+```
+
+예를 들어 가져오려는 저장소 주소가 `https://github.com/progh2/learngit.git` 라면 다음과 같이 됩니다.
+
+```cmd
+git clone https://github.com/progh2/learngit.git
+```
+
+그러면 `프로젝트 저장소 이름`으로 디렉토리로 git 저장소가 받아지게 됩니다.
+
+![image](https://user-images.githubusercontent.com/1307187/56463519-0570a200-6411-11e9-996f-7814987cd423.png)
+
+```cmd
+cd learngit
+dir
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56463523-1faa8000-6411-11e9-8261-d05f4ecd465a.png)
+
+branch를 확인해보면 master branch만 가져왔음을 알 수 있습니다.
+
+```
+git branch
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56463534-4668b680-6411-11e9-9e0e-9ab3c143d9af.png)
+
+기본적으로 특정 저장소를 `clone(복제)`하면 `master` branch만을 가져오게 됩니다.
+
+### 특정 branch 복제하기 
+
+특정 branch를 복제하기 위해서는 `-b` 옵션을 붙여야 합니다.
+
+```cmd
+git clone -b [branch이름] [저장소주소]
+```
+
+예를 들어 앞서 사용했던 learngit 저장소의 network branch를 가져오겠다면 다음과 같은 명령을 실행하면 됩니다. 다만 같은 이름의 디렉토리가 있다면 받아오지 못하기 때문에 위에서 받아온 master branch의 저장소 이름을 변경하고 가져오도록 합니다.
+
+```cmd
+cd ..
+move learngit learngit_master
+git clone -b network https://github.com/progh2/learngit.git
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56463566-fb02d800-6411-11e9-8cc1-110a9a2a968c.png)
+
+이제 디렉토리로 이동해서 확인해봅시다.
+
+```cmd
+cd learngit
+git branch
+```
+
+![image](https://user-images.githubusercontent.com/1307187/56463573-1d94f100-6412-11e9-921b-983a83a0bac0.png)
+
+위와 같은 방법으로 저장소의 특정 branch를 받아와서 개발할 수 있습니다.
+
+
