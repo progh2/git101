@@ -358,5 +358,5 @@ git push -u origin master
 
 ![image](https://user-images.githubusercontent.com/1307187/56459538-fae1e880-63cf-11e9-92b3-989d001616ab.png)
 
-위와같이 하여 지역 저장소에서 커밋한 내역을 원격 저장소로 `Push`(푸쉬) 할 수 있습니다.
+위와같이 하여 지역 저장소에서 커밋한 내역을 원격 저장소로 `Push`(푸쉬) 하고 제대로 반영이 되었는지 확인할 수 있습니다.
 
